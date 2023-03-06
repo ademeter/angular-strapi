@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+# b5 Taskfile, see https://git.team23.de/build/b5 for details
+
+# Basic housekeeping tasks
+task:install(){
+    template:render --overwrite ask-if-older templates/config.local.yml.jinja2 config.local.yml
+
+    docker:install
+    npm:install --force-run ci
+
+    pre-commit:install
+
+    backend:install
+}
+
+backend:install(){
+    (
+        cd ../backend && \
+        npm ci
+    )
+}
+
+task:update(){
+    docker:update
+    npm:install --force-run ci
+}
+
+# migrate nx to latest version
+task:upgrade:nx() {
+    (
+        cd ../web && \
+        nx migrate @nrwl/workspace && \
+        npm i --legacy-peer-deps && \
+        nx migrate --run-migrations && \
+        rm migrations.json
+    )
+}
+
+task:run() {
+    docker:compose up "$@"
+}
+
+task:halt() {
+    docker:compose down "$@"
+}
+
+task:npm() {
+    docker:command:npm "$@"
+}
+
+task:npx() {
+    docker:command:npx "$@"
+}
+
+task:nx() {
+    docker:command:npm run nx -- "$@"
+}
+
+task:lint() {
+    docker:command:npm run lint -- "$@"
+}
+
+task:lint:all() {
+    docker:command:npm run lint -- --all "$@"
+}
+
+task:lint:style() {
+    docker:command:npm run lint:style -- "$@"
+}
+
+task:test() {
+    docker:command:npm run test -- "$@"
+}
+
+task:test:affected() {
+    docker:command:npm run affected:test -- "$@"
+}
+
+task:test:all() {
+    docker:command:npm run test -- --all "$@"
+}
+
+task:e2e() {
+    docker:command:npm run e2e -- "$@"
+}
+
+task:e2e:affected() {
+    docker:command:npm run affected:e2e -- "$@"
+}
+
+task:build() {
+    docker:command:npm run build -- "$@"
+}
+
+pre-commit:install() {
+    if ( which pre-commit > /dev/null 2>&1 )
+    then
+        (
+            cd ../
+            pre-commit install --install-hooks
+        )
+    else
+        b5:warn "-----------------------------------------------------------------"
+        b5:warn "pre-commit is not installed - cannot enable pre-commit hooks!"
+        b5:warn "Recommendation: 1. Install pre-commit ('brew install pre-commit')."
+        b5:warn "                2. Then run install again ('b5 pre-commit:install')."
+        b5:warn "-----------------------------------------------------------------"
+    fi
+}
+
+task:pre-commit:install() {
+    pre-commit:install
+}
+
+# npm stuff
+npm:install() {
+  if [[ " ${CONFIG_modules_docker_docker_compose_config_overrides[@]} " =~ " node_modules-volume " ]]; then
+    npm:docker-and-local "$@"
+  else
+    npm:docker-only "$@"
+  fi
+}
+
+npm:docker-and-local() {
+  echo "Running docker npm..."
+  npm:docker-only "$@"
+  echo
+
+  echo "Running local npm install to make sure we have same state..."
+  npm:local-only "$@"
+}
+
+npm:local-only() {
+    (
+        cd ../web &&
+        npm "$@"
+    )
+    (
+        cd ../backend &&
+        npm "$@"
+    )
+}
+
+npm:docker-only() {
+  docker:command:npm "$@"
+}

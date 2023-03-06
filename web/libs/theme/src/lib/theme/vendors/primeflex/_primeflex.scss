@@ -1,0 +1,34 @@
+@import '../../variables/spacing';
+
+$sm: 576px;
+$md: 640px;
+$lg: 1025px;
+$xl: 1440px;
+
+$gutter: $spacing-xs;
+$fieldMargin: $spacing-xs;
+$fieldLabelMargin: $spacing-xs;
+$helperTextMargin: $spacing-xs;
+
+$spacer: $spacing-s;
+
+@import 'primeflex/src/variables';
+
+$breakpoints: (
+    'sm': $sm,
+    'md': $md,
+    'lg': $lg,
+    'xl': $xl,
+);
+
+@import 'primeflex/src/mixins';
+
+// grid system .grid, .col-1, etc
+@import 'primeflex/src/grid';
+
+// display .hidden, .inline, etc
+@import 'primeflex/src/display';
+
+// flex layout .flex, .justify-content-center
+@import 'primeflex/src/flexbox';
+@import 'primeflex/src/gap';

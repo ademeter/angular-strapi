@@ -1,0 +1,115 @@
+@use 'sass:map';
+
+@import '../variables/colors';
+
+///
+/// Generate classes for backgrounds. Automatically sets color for text and heading based on configuration
+///
+@mixin generate-background($config, $prefixes) {
+    @each $selector, $value in $config {
+        .background-#{$selector} {
+            // background color is generated using the generate-color-utilities mixin
+            // background-color: var(#{'--color-' + $selector});
+
+            $has-text: map.get($value, 'text');
+
+            @if ($has-text) {
+                @at-root {
+                    &:not([class*='color']) {
+                        color: var(#{'--color-text-on-' + $selector});
+                    }
+                }
+            }
+
+            $has-heading: map.get($value, 'heading');
+
+            @if ($has-heading) {
+                @each $prefix in $prefixes {
+                    @at-root {
+                        #{$prefix}#{&}:not([class*='color']) {
+                            color: var(#{'--color-heading-on-' + $selector});
+                        }
+                    }
+                }
+
+                @each $prefix in $prefixes {
+                    :not([class*='background'], [class*='color']) #{$prefix}:not([class*='background'], [class*='color']),
+                    > #{$prefix}:not([class*='background'], [class*='color']) {
+                        color: var(#{'--color-heading-on-' + $selector});
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+    Extract the nested value for the key from the config returning a flat map for further calculation
+ */
+@function extract($config, $key) {
+    $result: ();
+
+    @each $selector, $value in $config {
+        $color-by-key: map.get($value, $key);
+
+        @if ($color-by-key) {
+            $result: map.set($result, #{$key + '-on-' + $selector}, $color-by-key);
+        }
+    }
+
+    @return $result;
+}
+
+/// generate config for colors
+/// (color-text: (color: #fff), color-text-on-secondary: (color: #fff))
+@function generate-color-config($name, $attribute, $colors) {
+    $result: ();
+
+    @each $variable, $value in $colors {
+        $attributes: map.set((), #{$attribute}, #{$value});
+
+        $result: map.set($result, #{$name}-#{$variable}, $attributes);
+    }
+
+    @return $result;
+}
+
+/// Generate Mapping for heading and text colors (classes and css variables). Do not touch
+$colors-headings: map.merge(( heading: $color-heading-default ), extract($color-mapping-for-background, 'heading'));
+$colors-text: map.merge(( text: $color-text-default ), extract($color-mapping-for-background, 'text'));
+
+$color-config: ();
+$color-config: generate-color-config('background', 'background-color', $color-mapping-for-utilities);
+$color-config: map.merge($color-config, generate-color-config('color', 'color', $color-mapping-for-utilities));
+$color-config: map.merge($color-config, generate-color-config('color', 'color', $colors-text));
+$color-config: map.merge($color-config, generate-color-config('color', 'color', $colors-headings));
+
+///
+/// Create CSS Selectors for colors.
+///
+/// @example scss - Generated CSS
+///   .color { color: var(--color-primary) }
+///
+@mixin generate-color-utilities() {
+    @each $selector, $options in $color-config {
+        @each $attribute, $value in $options {
+            .#{$selector} {
+                #{$attribute}: var(--#{$selector});
+            }
+        }
+    }
+}
+
+///
+/// Create CSS Selectors for colors based on config.
+///
+/// @example scss - Generated CSS
+///   .color { color: var(--color-primary) }
+///
+@mixin generate-css-color-variables($config) {
+    @each $selector, $options in $config {
+        @each $attribute, $value in $options {
+            #{'--' + $selector}: #{$value};
+        }
+    }
+}

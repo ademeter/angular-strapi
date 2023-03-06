@@ -1,0 +1,100 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+
+<Meta
+        title="Styleguide/Design System"
+        parameters={{
+            layout: 'centered',
+        }}
+/>
+
+# Design System
+
+## Why
+
+We want to achieve a redundancy across all of our projects: Every developer should be able to work in every project.
+Therefore we need to use the same systems in the development.
+
+One of them is a Design System: (S)CSS classes and styles to create flexible (and reusable) UIs.
+
+## Structure
+
+The design system is located in `libs/theme`.
+
+```
+libs/theme/src/lib/theme
+├── abstracts
+│   ├── _color.scss
+│   ├── _spacing.scss
+│   └── ...
+├── ui
+│   ├── _base.scss
+│   ├── _reset.scss
+│   ├── _typography.scss
+│   └── ...
+├── variables
+│   ├── _base.scss
+│   ├── _spacing.scss
+│   └── ...
+├── vendors
+│   ├── primeng
+│   └── primeflex
+├── index.scss
+├── storybook.scss
+└── utilities.scss
+```
+- abstract: mixins and placeholders to generate ui.
+- ui: contains base css (e.g. reset) and utility classes for color, spacing, typography, etc.
+- variables: contains all relevant variables for the design system: base, colors, spacing, typography, etc.
+- vendors: contains code of external dependencies. Right not it contains PrimeNg and Primeflex
+  - Primeflex: contains a config of all utility classes used of primeflex
+    - Entry Point: `./_primeflex.scss`
+    - Update package `primeflex` for newer version
+  - PrimeNg: contains the prime designer (all PrimeNg Styles with variables)
+    - Entry Point: './custom/_variables.scss'
+    - Update `https://git.team23.de/team23/primeone-designer-ng` and migrate `custom` and `designer` folder.
+
+## Further Infos
+
+- Colors
+- Typography
+- Spacing
+
+## Usage
+After configuration of the variables (in `./variables`) you are ready to go:
+
+### Utility Classes
+```html
+<div class="mb-m background-primary">
+    <div class="text-small color-text-on-primary"> ... <div>
+</div>
+```
+
+### Custom CSS
+There are different ways to use the different aspects of the design system in your custom component styles
+#### Colors
+Since colors are defined using css variables you can use them directly when needed:
+```css
+.card {
+    color: var(--color-text-on-secondary);
+    background-color: var(--background-secondary);
+}
+```
+#### Spacing
+Since spacing classes are generated based on a config it is not possible to include them directly. There is one mixin for all spacings:
+```css
+.card {
+    @include set-spacing(pt-m);
+    @include set-spacing(pl-m);
+}
+```
+#### Typography
+Since typography is defined explicitly it's not possible to use only one mixin. There is one mixin for every typography type
+```css
+.card {
+    @include text-small;
+    @include text-bold;
+}
+```
+## open TODOs
+- add prime designer as subtree
+- avoid multiple `font-family` attributes when including multiple typography mixins

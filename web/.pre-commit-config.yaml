@@ -1,0 +1,43 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: trailing-whitespace
+        args: [ --markdown-linebreak-ext=md ]
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.31.0
+    hooks:
+      - id: eslint
+        files: \.([jt]s|html)?$  # *.js, *.ts and html
+        types: [ file ]
+        additional_dependencies:
+          - '@angular-eslint/eslint-plugin@15.0.0'
+          - '@angular-eslint/eslint-plugin-template@15.0.0'
+          - '@angular-eslint/template-parser@15.0.0'
+          - '@team23/eslint-config-team23-angular@^15.0.0'
+          - '@team23/eslint-config-team23-ngrx@^15.0.0'
+          - '@team23/eslint-config-team23-standard@^8.0.3'
+          - '@team23/eslint-config-team23-ts@^4.0.0'
+          - '@team23/stylelint-config-team23-scss@^3.0.2'
+          - '@ngrx/eslint-plugin@^15.1.0'
+          - '@nrwl/eslint-plugin-nx@15.4.4'
+          - '@typescript-eslint/eslint-plugin@5.48.0'
+          - '@typescript-eslint/parser@5.48.0'
+          - 'eslint@~8.15.0'
+          - 'eslint-plugin-cypress@^2.10.3'
+          - 'eslint-plugin-import@^2.26.0'
+          - 'eslint-plugin-jsdoc@^37.2.1'
+          - 'eslint-plugin-prefer-arrow@^1.2.3'
+          - 'eslint-plugin-storybook@^0.6.4'
+
+  - repo: https://github.com/thibaudcolas/pre-commit-stylelint
+    rev: v14.16.1
+    hooks:
+      - id: stylelint
+        types: [ file ]
+        additional_dependencies:
+          - 'stylelint@^14.16.1'
+          - '@team23/stylelint-config-team23-scss@^3.0.2'
+        args: [ --fix ]

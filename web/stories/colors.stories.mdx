@@ -1,0 +1,190 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+
+<Meta
+        title="Styleguide/Colors"
+        parameters={{
+            layout: 'centered',
+        }}
+/>
+
+# Colors
+
+## Color Values
+There are some colors defined in the design system in `variables/_colors.scss`.
+
+export const TemplateColor = (args) => args.colorsDefinedInUtilityMapping.reduce((template, color) => `
+    ${ template }
+    <div class="flex align-items-center mb-s">
+        <div class="p-m" style="width: 120px">${ color }</div>
+        <div class="flex-1 p-l background-${ color }" style="border: 1px solid #eee"></div>
+    </div>`, '');
+
+
+<Story
+        name="colors"
+        args={{
+            colorsDefinedInUtilityMapping: ['primary', 'secondary', 'white', 'error', 'warning', 'info']
+        }}
+>
+    {TemplateColor.bind({})}
+</Story>
+
+> All available colors are defined as CSS variables and thus can be seen in the browser developer console.
+
+## Utility Classes
+### Text / Background
+All color values defined in `$color-mapping-for-utilities` can be used in form of utility classes to style text directly following the pattern `.color-NAME` or `.background-NAME`.
+Adding a new variables creates a new utility class.
+
+export const TemplateText = (args) => `
+    <div class="flex">
+        <div class="p-xl flex-1 color-${ args.color }">
+            .color-${ args.color }
+        </div>
+        <div class="p-xl flex-1 background-${ args.color } color-white">
+            .background-${ args.color }
+        </div>
+    </div>
+`;
+
+<Canvas withSource="open">
+    <Story
+            name="text"
+            args={{
+                color: 'primary'
+            }}
+            argTypes={{
+                color: {
+                    description: 'The color of the text/background',
+                    control: 'select', options: ['primary', 'secondary', 'error', 'warning', 'info']
+                },
+            }}
+    >
+        {TemplateText.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="text" />
+
+## Text on Background
+
+There are also some generated utility classes from `$color-mapping-for-background` for `.color-text-on-BACKGROUND` and `.color-heading-on-BACKGROUND`.
+
+export const TemplateTextOnBackground = (args) => `
+    <div class="flex">
+        <div class="p-xl flex-1 color-text-on-${ args.color }" style="background: grey">
+            .color-text-on-${ args.color }
+        </div>
+        <div class="p-xl flex-1 color-heading-on-${ args.color }" style="background: grey">
+            .color-heading-on-${ args.color }
+        </div>
+    </div>
+`;
+
+<Canvas withSource="open">
+    <Story
+            name="text-on-background"
+            args={{
+                color: 'primary'
+            }}
+            argTypes={{
+                color: {
+                    description: 'The color of the background',
+                    control: 'select', options: ['primary', 'secondary', 'white', 'error', 'warning', 'info']
+                },
+            }}
+    >
+        {TemplateTextOnBackground.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="text-on-background" />
+
+## Dynamic Color System
+The variable `$color-mapping-for-background` has a second purpose. It defines the text color based on selected background.
+This means the class `.background-NAME` automatically defines the text color based on this configuration. Adding no key for text/heading does not add any color.
+
+export const TemplateBackground = (args) => `
+    <div class="p-l background-${ args.background }">
+        <h6>heading</h6>
+        <div>.background-${ args.background }</div>
+    </div>`;
+
+<Canvas withSource="open">
+    <Story
+            name="background"
+            args={{
+                background: 'primary'
+            }}
+            argTypes={{
+                background: {
+                    description: 'The color of the background',
+                    control: 'select', options: [ 'primary', 'secondary', 'white' ]
+                },
+            }}
+    >
+        {TemplateBackground.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="background" />
+
+### Nesting backgrounds
+It is possible to use the background classes in a nested way to create complex uis.
+
+<Canvas>
+    <div className="p-m background-primary">
+        <h6>heading</h6>
+        .background-primary
+        <div className="mt-m p-m background-secondary">
+            <h6>heading</h6>
+            .background-secondary
+            <div className="mt-m p-m background-white">
+                <h6>heading</h6>
+                .background-white
+                <div className="mt-m p-m background-primary">
+                    <h6>heading</h6>
+                    .background-primary
+                </div>
+            </div>
+        </div>
+    </div>
+</Canvas>
+
+### Overriding defaults
+It is possible to use the color classes in combination with the background to override default behaviour for text and headings.
+
+<Canvas>
+    <div className="p-m background-primary">
+        <h6>heading</h6>
+        .background-primary
+        <div className="p-m color-error">
+            <h6>.color-error heading</h6>
+            .color-error
+        </div>
+        <div className="mt-m p-m background-secondary">
+            <h6>heading</h6>
+            .background-secondary
+            <div className="p-m color-error">
+                <h6>.color-error heading</h6>
+                .color-error
+            </div>
+            <div className="mt-m p-m background-white">
+                <h6>heading</h6>
+                .background-white
+                <div className="p-m color-error">
+                    <h6>.color-error heading</h6>
+                    .color-error
+                </div>
+                <div className="mt-m p-m background-error">
+                    <h6>heading</h6>
+                    .background-error
+                    <div className="p-m color-warning">
+                        <h6>.color-warning heading <span className="text color-text-on-error">(inner .text.color-text-on-error)</span> </h6>
+                        .color-warning
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Canvas>

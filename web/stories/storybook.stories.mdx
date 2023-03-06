@@ -1,0 +1,62 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+<Meta
+        title="Storybook/Examples"
+        argTypes={{
+            value: {
+                description: 'The description of the arg',
+            },
+        }}
+        parameters={{
+            layout: 'centered',
+        }}
+/>
+
+# Stories
+
+## inline Story that generates new navigation Entry (incl. ArgsTable)
+
+export const Template = (args) => `<div class="p-m background-secondary color-text-on-secondary">Internal .mdx with value: ${ args.value }, written in Html</div>`;
+
+<Story
+        name="Inline"
+        args={{
+            value: 'a Template',
+        }}>
+    {Template.bind({})}
+</Story>
+
+ArgsTable only working with inline story or react component
+
+<ArgsTable story="Inline" />
+
+## external Story (without ArgsTable)
+
+<Story id="storybook-examples--external"/>
+
+# Canvas
+
+Canvas does include Source
+
+## Canvas with Html
+
+<Canvas>
+    <div className="p-xs background-secondary">
+        <div className="p-xxl background-primary color-text-on-primary">
+            Internal .mdx with Canvas, written in React
+        </div>
+    </div>
+</Canvas>
+
+## Canvas with Story
+
+<Canvas withSource="open">
+    <Story id="storybook-examples--external"/>
+</Canvas>
+
+<Canvas>
+    <Story id="storybook-examples--custom"/>
+</Canvas>
+
+# Styling
+There is currently no way to display the SCSS for the used classes.

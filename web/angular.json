@@ -1,0 +1,9 @@
+{
+    "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+    "version": 2,
+    "projects": {
+        "angular-strapi": "apps/angular-strapi",
+        "angular-strapi-e2e": "apps/angular-strapi-e2e",
+        "theme": "libs/theme"
+    }
+}

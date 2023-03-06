@@ -1,0 +1,66 @@
+{
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.tsx",
+                "*.js",
+                "*.jsx"
+            ],
+            "extends": [
+                "@team23/eslint-config-team23-standard"
+            ],
+            "rules": {
+            }
+        },
+        {
+            "files": [
+                "*.ts",
+                "*.tsx"
+            ],
+            "extends": [
+                "@team23/eslint-config-team23-ts",
+                "@team23/eslint-config-team23-angular",
+                "@team23/eslint-config-team23-ngrx"
+            ],
+            "rules": {
+            }
+        },
+        {
+            "files": [
+                "*.js",
+                "*.jsx"
+            ],
+            "rules": {}
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "@team23/eslint-config-team23-angular"
+            ],
+            "parser": "@angular-eslint/template-parser",
+            "rules": {
+            }
+        },
+        {
+            "files": [
+                "*routing.module.ts"
+            ],
+            "rules": {
+                "@typescript-eslint/promise-function-async": "off"
+            }
+        },
+        {
+            "files": [
+                "*.spec.ts",
+                "*testing.module.ts"
+            ],
+            "rules": {
+                "max-classes-per-file": "off",
+                "@typescript-eslint/no-magic-numbers": "off"
+            }
+        }
+    ]
+}

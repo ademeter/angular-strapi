@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+<Meta
+        title="Styleguide/Spacing"
+        argTypes={{
+            direction: {
+                description: 'The direction of the spacing',
+                control: 'select', options: [ '', 't', 'r', 'b', 'l', 'x', 'y' ]
+            },
+            size: {
+                description: 'The size of the spacing',
+                control: 'select', options: [ 'none', 'xs', 's', 'm', 'l', 'xl', 'xxl' ]
+            },
+        }}
+        parameters={{
+            layout: 'centered',
+        }}
+/>
+
+# Spacing
+
+- [Padding](#padding)
+- [Margin](#margin)
+
+## Overview
+
+Specifies the space between the content and its border. Naming convention: margin (m), padding (p), left (l), top (t), right (r), bottom (b).
+> Note: there is no `!important` in the style. We need to test it if it works without it (all major libraries use important for their styles).
+
+<Canvas>
+    <div className="background-secondary" style={{ overflow: 'hidden' }}>
+        <div className="p-m m-m background-primary color-text-on-primary">
+            .p-m.m-m
+        </div>
+    </div>
+</Canvas>
+
+
+export const Template = (args) => `<div class="background-secondary" style="padding: 1px">
+        <div class="${ args.type }${ args.direction }-${ args.size } background-primary">
+            <div class="background-grey color-text-on-grey">
+                ${ args.type }${ args.direction }-${ args.size }
+            </div>
+        </div>
+    </div>`;
+
+## Padding
+
+Specifies the space between the content and its border.
+
+<Canvas withSource="open">
+    <Story
+            name="padding"
+            args={{
+                type: 'p',
+                direction: '',
+                size: 'm',
+            }}
+            argTypes={{
+                type: { control: { disable: true }}
+            }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="padding" />
+
+## Margin
+
+Controls the space around an element.
+
+<Canvas>
+    <Story
+            name="margin"
+            args={{
+                type: 'm',
+                direction: '',
+                size: 'm',
+            }}
+            argTypes={{
+                type: { control: 'select', options: ['m', '-m']}
+            }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<ArgsTable story="margin" />
+
+<Canvas>
+    <div className="background-secondary" style={{ overflow: 'hidden' }}>
+        <div className="mx-auto background-primary color-text-on-primary" style={{ overflow: 'hidden', width: '200px' }}>
+            .mx-auto
+        </div>
+    </div>
+</Canvas>

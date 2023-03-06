@@ -1,0 +1,52 @@
+version: '3.2'
+
+services:
+  web:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+      # traefik 1.x
+      - traefik.port=4200
+      # traefik 2.x
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}_web.loadbalancer.server.port=4200
+  storybook:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+      # traefik 1.x
+      - traefik.port=6006
+      # traefik 2.x
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}_storybook.loadbalancer.server.port=6006
+  backend:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+      # traefik 1.x
+      - traefik.port=1337
+      # traefik 2.x
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}_backend.loadbalancer.server.port=1337
+  backendDB:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+      # traefik 1.x
+      - traefik.port=3306
+      # traefik 2.x
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}_backendDB.loadbalancer.server.port=3306
+
+networks:
+  default:
+  traefik_gateway:
+    external: true

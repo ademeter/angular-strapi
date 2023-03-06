@@ -1,0 +1,18 @@
+@import '../abstracts/color';
+@import '../variables/colors';
+
+///
+/// Create CSS Selectors for colors.
+///
+/// @example scss - Generated SCSS
+///   .color-primary { color: var(--color-primary) }
+///   .background-primary { background-color: var(--color-primary) }
+$heading-classes: '[class*=heading]', '.h1', '.h2', '.h3', '.h4', '.h5', '.h6', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6';
+
+/// generate classes for background
+@include generate-background($color-mapping-for-background, $heading-classes);
+
+/// generate all kind of classes for text and heading colors
+@include generate-color-utilities();
+
+// Color styling is mainly done in vendors/custom/_variables.scss

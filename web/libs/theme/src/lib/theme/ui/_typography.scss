@@ -1,0 +1,82 @@
+@import '../abstracts/typography';
+
+/*
+ * Text Placeholder
+ */
+
+.text {
+    @include text-medium;
+}
+
+.text-small {
+    @include text-small;
+}
+
+.text-medium {
+    @include text-medium;
+}
+
+.text-large {
+    @include text-large;
+}
+
+.text-center {
+    text-align: center;
+}
+
+a:not([class*=color]) {
+    color: var(--color-primary);
+}
+
+// Add new Styles here e.g. .text-italic
+
+/*
+ * Heading
+ */
+
+.heading {
+    @include heading-medium;
+}
+
+.heading-small {
+    @include heading-small;
+}
+
+.heading-medium {
+    @include heading-medium;
+}
+
+.heading-large {
+    @include heading-large;
+}
+
+.heading-bold {
+    @include heading-bold;
+}
+
+h1, .h1 {
+    @include heading-large;
+    @include heading-bold;
+}
+
+h2, .h2 {
+    @include heading-large;
+}
+
+h3, .h3 {
+    @include heading-medium;
+    @include heading-bold;
+}
+
+h4, .h4 {
+    @include heading-medium;
+}
+
+h5, .h5 {
+    @include heading-small;
+    @include heading-bold;
+}
+
+h6, .h6 {
+    @include heading-small;
+}

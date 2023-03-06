@@ -1,0 +1,109 @@
+@use 'sass:map';
+@import '../variables/spacing';
+
+$padding-directions: (
+    '': 'padding',
+    't': 'padding-top',
+    'r': 'padding-right',
+    'l': 'padding-left',
+    'b': 'padding-bottom',
+    'x': ('padding-left','padding-right'),
+    'y': ('padding-top','padding-bottom')
+);
+$margin-directions: (
+    '': 'margin',
+    't': 'margin-top',
+    'r': 'margin-right',
+    'l': 'margin-left',
+    'b': 'margin-bottom',
+    'x': ('margin-left','margin-right'),
+    'y': ('margin-top','margin-bottom')
+);
+
+/// generate a map for all spacings
+/// (m-l: (margin: large), mt-m: (margin-top: medium))
+@function generate-spacing-config($name, $directions, $sizes, $auto: false, $negative: false) {
+    $result: ();
+
+    @each $dir, $prop in $directions {
+        @each $size-name, $size-value in $sizes {
+            $attributes: ();
+
+            @each $propName in $prop {
+                $attributes: map.set($attributes, #{$propName}, #{$size-value});
+            }
+
+            $result: map.set($result, #{$name}#{$dir}-#{$size-name}, $attributes);
+        }
+
+        @if ($negative) {
+            @each $size-name, $size-value in $sizes {
+                $attributes: ();
+
+                @each $propName in $prop {
+                    $attributes: map.set($attributes, #{$propName}, #{-1 * $size-value});
+                }
+
+                $result: map.set($result, -#{$name}#{$dir}-#{$size-name}, $attributes);
+            }
+        }
+
+        @if ($auto) {
+            $attributes: ();
+
+            @each $propName in $prop {
+                $attributes: map.set($attributes, #{$propName}, auto);
+            }
+
+            $result: map.set($result, #{$name}#{$dir}-auto, $attributes);
+        }
+    }
+
+    @return $result;
+}
+
+$spacing-config: generate-spacing-config('m', $margin-directions, $spacing-sizes, true, true);
+$spacing-config: map.merge($spacing-config, generate-spacing-config('p', $padding-directions, $spacing-sizes));
+
+////
+/// Utilities to create styles for spacing
+////
+///
+/// @example scss - Example for padding
+///  .pb-s
+///  .pb-m
+///  .pl-l
+///
+/// @example scss - Example for margin
+///  .mt-0
+///  .mr-xs
+///  .mx-xl
+///  .my-xxl
+///
+/// @example scss - Specials for margin
+///  .-mt-l
+///  .mb-auto
+///
+@mixin generate-spacing-utilities() {
+    @each $selector, $options in $spacing-config {
+        @each $attribute, $value in $options {
+            .#{$selector} {
+                #{$attribute}: #{$value};
+            }
+        }
+    }
+}
+
+/// helper to include spacing in custom styling
+/// @include set-spacing(mt-l)
+@mixin set-spacing($selector) {
+    $c: map.get($spacing-config, $selector);
+
+    @if not $c {
+        @error "Key '#{$selector}' does not exist in spacing config";
+    }
+
+    @each $attribute, $value in $c {
+        #{$attribute}: #{$value};
+    }
+}

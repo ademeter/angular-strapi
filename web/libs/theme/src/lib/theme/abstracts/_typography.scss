@@ -1,0 +1,60 @@
+@import '../variables/typography';
+
+/*
+ * Text Placeholder
+ */
+@mixin text {
+    font-family: $font-family-text;
+}
+
+@mixin text-small {
+    @include text;
+
+    font-size: $text-small;
+}
+
+@mixin text-medium {
+    @include text;
+
+    font-size: $text-medium;
+}
+
+@mixin text-large {
+    @include text;
+
+    font-size: $text-large;
+}
+
+@mixin text-bold {
+    font-weight: 700;
+}
+
+/*
+ * Heading Placeholder
+ */
+
+@mixin heading {
+    font-family: $font-family-heading;
+}
+
+@mixin heading-small {
+    @include heading;
+
+    font-size: $heading-small;
+}
+
+@mixin heading-medium {
+    @include heading;
+
+    font-size: $heading-medium;
+}
+
+@mixin heading-large {
+    @include heading;
+
+    font-size: $heading-large;
+}
+
+@mixin heading-bold {
+    font-weight: 700;
+}

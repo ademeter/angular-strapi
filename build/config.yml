@@ -1,0 +1,20 @@
+version: 1.0.0
+project:
+  name: Angular+Strapi
+  key: angular-strapi
+  url: https://angular-strapi.t23dev
+# You could add some modules:
+modules:
+  template:
+  docker:
+    docker_compose_config_overrides:
+      - localhost
+    commands:
+      npm:
+        bin: npm
+        service: web
+        workdir: /app/web/
+      npx:
+        bin: npx
+        service: web
+        workdir: /app/web/

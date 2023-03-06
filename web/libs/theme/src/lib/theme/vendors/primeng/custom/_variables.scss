@@ -1,0 +1,71 @@
+@use 'sass:map';
+@use 'sass:list';
+@import '../../../abstracts/color';
+@import '../../../variables/index';
+
+// PrimeNG Theme Specific Variables
+$primaryColor: $color-primary;
+$primaryDarkColor: $color-primary-dark;
+$primaryDarkerColor: $color-primary-darker;
+$primaryTextColor: $color-text-default;
+
+// enables generation of css variables for all colors (50-900)
+$colors: (
+    //'blue': $color-blue,
+    //'green': $color-green,
+    //'yellow': $color-yellow,
+    //'cyan': $color-cyan,
+    //'pink': $color-pink,
+    //'indigo': $color-indigo,
+    //'teal': $color-teal,
+    //'orange': $color-orange,
+    //'bluegray': $color-bluegray,
+    //'purple': $color-purple,
+    //'red': $color-red,
+    'primary': $color-primary,
+    'secondary': $color-secondary,
+    'grey': $color-grey,
+    'surface': $color-grey,
+);
+
+// Mandatory Designer Variables
+@import './variables/general';
+@import './variables/form';
+@import './variables/button';
+@import './variables/panel';
+@import './variables/_data';
+@import './variables/_overlay';
+@import './variables/_message';
+@import './variables/_menu';
+@import './variables/_media';
+@import './variables/_misc';
+
+// Custom styling that is not used from primeng right now. enables dark mode
+
+:root {
+    @include generate-css-color-variables($color-config);
+
+    --surface-0: #{$color-white};
+}
+
+:root .theme-dark {
+    --color-primary: #{$color-secondary};
+    --color-secondary: #{$color-primary};
+    --background-primary: #{$color-secondary};
+    --background-secondary: #{$color-primary};
+    --color-heading-on-secondary: #{$color-secondary};
+
+    --surface-0: var(--grey-900);
+    --surface-50: var(--grey-800);
+    --surface-100: var(--grey-700);
+    --surface-200: var(--grey-600);
+    --surface-300: var(--grey-500);
+    --surface-400: var(--grey-400);
+    --surface-500: var(--grey-300);
+    --surface-600: var(--grey-200);
+    --surface-700: var(--grey-100);
+    --surface-800: var(--grey-50);
+    --surface-900: #{$color-white};
+
+    // [ ... add more overrides here ]
+}

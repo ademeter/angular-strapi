@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    ports:
+      - "4200:4200"
+  storybook:
+    ports:
+      - "6006:6006"
+  backend:
+    ports:
+      - "1337:1337"
+  backendDB:
+    ports:
+      - "3306:3306"

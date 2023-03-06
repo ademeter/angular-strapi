@@ -1,0 +1,20 @@
+@import 'ui/reset';
+@import 'variables/base';
+
+@import 'variables/colors';
+@import 'ui/color';
+
+@import 'variables/typography';
+@import 'ui/typography';
+
+@import 'ui/base';
+
+@import 'variables/spacing';
+@import 'ui/spacing';
+
+/**
+ * includes grid, display. flexbox, gap
+ */
+@import 'vendors/primeflex';
+
+// @import 'vendors/primeng';

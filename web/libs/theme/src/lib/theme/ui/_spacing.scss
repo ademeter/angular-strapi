@@ -1,0 +1,21 @@
+@import '../abstracts/spacing';
+
+///
+/// Utility styles for spacing
+///
+/// @example scss - Example for padding
+///  .pb-s
+///  .pb-m
+///  .pl-l
+///
+/// @example scss - Example for margin
+///  .mt-0
+///  .mr-xs
+///  .mx-xl
+///  .my-xxl
+///
+/// @example scss - Specials for margin
+///  .-mt-l
+///  .mb-auto
+///
+@include generate-spacing-utilities();

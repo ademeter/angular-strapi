@@ -1,0 +1,26 @@
+@import 'base';
+
+/*
+ * Spacing Variables
+ */
+
+$spacing-xs: 1 * $base-size !default;
+$spacing-s: 2 * $base-size !default;
+$spacing-m: 3 * $base-size !default;
+$spacing-l: 5 * $base-size !default;
+$spacing-xl: 8 * $base-size !default;
+$spacing-xxl: 13 * $base-size !default;
+
+/*
+ * Static
+ */
+$spacing-none: 0;
+$spacing-sizes: (
+    none: $spacing-none,
+    xs: $spacing-xs,
+    s: $spacing-s,
+    m: $spacing-m,
+    l: $spacing-l,
+    xl: $spacing-xl,
+    xxl: $spacing-xxl,
+);

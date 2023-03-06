@@ -1,0 +1,92 @@
+import { Canvas, Meta } from '@storybook/addon-docs';
+
+<Meta
+        title="Styleguide/Typography"
+/>
+
+# Typography
+There are some predefined heading and text sizes and styles. They should only be extended after coordination with the ui/ux responsible
+## Heading
+Headings can be defined using `.heading` classes or native `h`-Tags
+
+### Sizes
+The predefined Sizes can be changed globally when needed. It is recommended to not add new sizes but to scrutinise the ui if this is really necessary.
+
+<Canvas>
+    <div className="h1">
+        h1
+    </div>
+    <div className="h2">
+        h2
+    </div>
+    <div className="h3">
+        h3
+    </div>
+    <div className="h4">
+        h4
+    </div>
+    <div className="h5">
+        h5
+    </div>
+    <div className="h6">
+        h6
+    </div>
+</Canvas>
+
+<Canvas>
+    <div className="heading-large">
+        .heading-large
+    </div>
+</Canvas>
+
+<Canvas>
+    <div className="heading">
+        .heading-medium / .heading
+    </div>
+</Canvas>
+
+<Canvas>
+    <div className="heading-small">
+        .heading-small
+    </div>
+</Canvas>
+
+### Styles
+There are some styles defined. These can be extended when needed.
+
+<Canvas>
+    <div className="heading heading-bold">
+        .heading-bold
+    </div>
+</Canvas>
+
+## Text
+### Sizes
+The predefined Sizes can be changed globally when needed. It is recommended to not add new sizes but to scrutinise the ui if this is really necessary.
+
+<Canvas>
+    <div className="text-large">
+        .text-large
+    </div>
+</Canvas>
+
+<Canvas>
+    <div className="text">
+        .text-medium / .text
+    </div>
+</Canvas>
+
+<Canvas>
+    <div className="text-small">
+        .text-small
+    </div>
+</Canvas>
+
+### Styles
+There are some styles defined. These can be extended when needed.
+
+<Canvas>
+    <div className="text text-bold">
+        .text-bold
+    </div>
+</Canvas>

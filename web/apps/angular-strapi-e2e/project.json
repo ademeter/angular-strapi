@@ -1,0 +1,37 @@
+{
+    "name": "angular-strapi-e2e",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/angular-strapi-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/angular-strapi-e2e/cypress.config.ts",
+                "devServerTarget": "angular-strapi:serve:development",
+                "testingType": "e2e",
+                "tsConfig": "apps/angular-strapi-e2e/tsconfig.json"
+            },
+            "configurations": {
+                "production": {
+                    "devServerTarget": "angular-strapi:serve:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": [
+                "{options.outputFile}"
+            ],
+            "options": {
+                "lintFilePatterns": [
+                    "apps/angular-strapi-e2e/**/*.{js,ts,html}"
+                ]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": [
+        "angular-strapi"
+    ]
+}

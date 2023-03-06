@@ -1,0 +1,85 @@
+@use 'sass:map';
+
+/*
+ * Color Variables
+ */
+
+$color-primary: #c4d600 !default;
+$color-primary-dark: #b0c200 !default;
+$color-primary-darker: #9cae00 !default;
+$color-secondary: #32373d !default;
+
+$color-white: #fefefe !default;
+$color-grey: #212121 !default;
+$color-black: #212121 !default;
+
+$color-error: #d9362b !default;
+$color-warning: #E0E0E0 !default;
+$color-info: #d5a326 !default;
+$color-success: #419544 !default;
+
+$color-heading-default: $color-secondary !default;
+$color-text-default: $color-secondary !default;
+
+/*
+    Config to generate utility classes for .color-NAME
+    Every requested class needs to be configured here.
+    Base for css variables
+ */
+$color-mapping-for-utilities: () !default;
+$color-mapping-for-utilities: map.merge((
+    primary: $color-primary,
+    secondary: $color-secondary,
+
+    white: $color-white,
+    black: $color-black,
+
+    error: $color-error,
+    warning: $color-warning,
+    info: $color-info,
+    success: $color-success,
+), $color-mapping-for-utilities);
+
+/*
+    Custom mapping for our design system. Can use css variables directly when defined.
+    Every key generates classes for heading and/or text when defined based on their background color
+    Every entry for text / heading generates classes and css variables for color-text/heading-on-BASE
+ */
+$color-mapping-for-background: () !default;
+$color-mapping-for-background: map.deep-merge((
+    primary: (
+        text: $color-white,
+    ),
+    secondary: (
+        heading: var(--color-primary),
+        text: $color-white,
+    ),
+    white: (
+        heading: $color-heading-default,
+        text: $color-text-default,
+    ),
+    grey: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+    black: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+    error: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+    warning: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+    info: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+    success: (
+        heading: $color-white,
+        text: $color-white,
+    ),
+), $color-mapping-for-background);
