@@ -1,0 +1,13 @@
+{
+  "name": "angular-strapi-build",
+  "version": "1.0.0",
+  "author": "TEAM23",
+  "scripts": {
+    "openapi:generate": "openapi-generator-cli generate -g typescript-angular -i ../backend/src/extensions/documentation/documentation/1.0.0/full_documentation.json -o ../web/libs/openapi/src/lib --skip-validate-spec"
+  },
+  "private": true,
+  "devDependencies": {
+    "@apidevtools/swagger-cli": "^4.0.2",
+    "@openapitools/openapi-generator-cli": "^2.5.2"
+  }
+}

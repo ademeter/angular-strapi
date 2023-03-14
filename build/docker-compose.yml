@@ -22,7 +22,7 @@ services:
     build:
       context: ../backend
       dockerfile: Dockerfile.dev
-    # image: backend:latest
+#    image: backend:latest
     restart: unless-stopped
     env_file: .env
     environment:

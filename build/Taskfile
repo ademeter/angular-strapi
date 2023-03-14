@@ -16,7 +16,7 @@ task:install(){
 backend:install(){
     (
         cd ../backend && \
-        npm ci
+        npm install
     )
 }
 
@@ -144,3 +144,14 @@ npm:local-only() {
 npm:docker-only() {
   docker:command:npm "$@"
 }
+
+task:openapi() {
+    (
+        # Delete all old files and generate new ones
+        rm -rf "../web/libs/swagger/$NAME/src/lib"
+
+        # Generate new swagger-lib
+        npm run openapi:generate
+    )
+}
+
