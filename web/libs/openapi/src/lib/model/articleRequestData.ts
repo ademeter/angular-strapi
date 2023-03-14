@@ -17,7 +17,6 @@ export interface ArticleRequestData {
     description?: string;
     body?: string;
     heroimage?: ArticleRequestDataHeroimage;
-    foo?: string;
-    image?: ArticleRequestDataHeroimage;
+    footertext?: string;
 }
 

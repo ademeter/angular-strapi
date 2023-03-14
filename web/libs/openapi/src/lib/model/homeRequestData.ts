@@ -18,5 +18,6 @@ export interface HomeRequestData {
     introtext?: string;
     heroimage?: ArticleRequestDataHeroimage;
     bodytext?: string;
+    footertext?: string;
 }
 

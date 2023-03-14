@@ -7,5 +7,8 @@
     <ng-container *ngIf="content.attributes?.bodytext">
         <div class="text-small bodytext" [innerHTML]="content.attributes?.bodytext || '' | markdown"></div>
     </ng-container>
+    <ng-container *ngIf="content.attributes?.footertext">
+        <div class="text-small bodytext" [innerHTML]="content.attributes?.footertext || '' | markdown"></div>
+    </ng-container>
 </ng-container>
 

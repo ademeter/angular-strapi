@@ -19,8 +19,7 @@ export interface ArticleListResponseDataItemAttributes {
     description?: string;
     body?: string;
     heroimage?: ArticleListResponseDataItemAttributesHeroimage;
-    foo?: string;
-    image?: ArticleListResponseDataItemAttributesHeroimage;
+    footertext?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;

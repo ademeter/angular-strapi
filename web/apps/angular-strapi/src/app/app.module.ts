@@ -8,7 +8,6 @@ import { HomeContentComponent } from '@web/domain-home';
 import { ArticlesComponent } from '@web/domain-articles';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ArticleComponent } from './article/article.component';
 import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 @NgModule({
@@ -20,7 +19,7 @@ import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
         ArticlesComponent,
         RouterModule.forRoot([
             { path: '', component: HomeComponent },
-            { path: 'articles/:id', component: ArticleComponent },
+            // { path: 'articles/:id', component: ArticleComponent },
         ]),
         MarkdownModule.forRoot({
             markedOptions: {

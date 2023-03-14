@@ -20,6 +20,7 @@ export interface HomeListResponseDataItemAttributes {
     introtext?: string;
     heroimage?: ArticleListResponseDataItemAttributesHeroimage;
     bodytext?: string;
+    footertext?: string;
     createdAt?: string;
     updatedAt?: string;
     publishedAt?: string;
