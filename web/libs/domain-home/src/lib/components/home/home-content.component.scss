@@ -1,0 +1,23 @@
+@import '@team23/design-system/utilities';
+
+h1 {
+    font-size: 6rem;
+}
+.subline {
+    font-size: 4.5rem;
+}
+.intro {
+    @include set-spacing(px-xxl);
+    @include set-spacing(mt-xxl);
+
+    color: var(--color-primary);
+
+    font-size: 2.5rem;
+    line-height: 3rem;
+}
+.bodytext {
+    @include set-spacing(p-xxl);
+
+    line-height: 1.5rem;
+}
+

@@ -1,9 +1,18 @@
 {
-    "$schema": "./node_modules/nx/schemas/workspace-schema.json",
-    "version": 2,
-    "projects": {
-        "angular-strapi": "apps/angular-strapi",
-        "angular-strapi-e2e": "apps/angular-strapi-e2e",
-        "theme": "libs/theme"
-    }
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "angular-strapi": "apps/angular-strapi",
+    "angular-strapi-e2e": "apps/angular-strapi-e2e",
+    "domain-api": "libs/domain-api",
+    "domain-articles": "libs/domain-articles",
+    "domain-home": "libs/domain-home",
+    "openapi": "libs/openapi",
+    "theme": "libs/theme",
+    "ui-hero": "libs/ui-hero"
+  },
+  "defaultProject": "angular-strapi",
+  "scripts": [
+    "node_modules/marked/marked.min.js"
+  ]
 }

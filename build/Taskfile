@@ -154,4 +154,3 @@ task:openapi() {
         npm run openapi:generate
     )
 }
-

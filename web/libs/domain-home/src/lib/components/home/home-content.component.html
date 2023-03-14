@@ -1,0 +1,11 @@
+<ng-container *ngIf="(content$ | async) as content">
+    <ui-hero [image]="content.attributes?.heroimage">
+        <h1>{{content.attributes?.headline}}</h1>
+        <div class="text subline">{{content.attributes?.subline}}</div>
+    </ui-hero>
+    <div class="text intro mt-l" [innerHTML]="content.attributes?.introtext || '' | markdown"></div>
+    <ng-container *ngIf="content.attributes?.bodytext">
+        <div class="text-small bodytext" [innerHTML]="content.attributes?.bodytext || '' | markdown"></div>
+    </ng-container>
+</ng-container>
+

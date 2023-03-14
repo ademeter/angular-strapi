@@ -1,48 +1,76 @@
 {
-    "angularCompilerOptions": {
-        "fullTemplateTypeCheck": true,
-        "strictInjectionParameters": true,
-        "strictTemplates": true,
-        "strictInputTypes": true,
-        "strictInputAccessModifiers": true,
-        "strictNullInputTypes": true,
-        "strictAttributeTypes": true,
-        "strictSafeNavigationTypes": true,
-        "strictDomLocalRefTypes": true,
-        "strictOutputEventTypes": true,
-        "strictDomEventTypes": true,
-        "strictContextGenerics": true,
-        "strictLiteralTypes": true
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "strictTemplates": true,
+    "strictInputTypes": true,
+    "strictInputAccessModifiers": true,
+    "strictNullInputTypes": true,
+    "strictAttributeTypes": true,
+    "strictSafeNavigationTypes": true,
+    "strictDomLocalRefTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": true,
+    "strictContextGenerics": true,
+    "strictLiteralTypes": true
+  },
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "paths": {
+      "@env/*": [
+        "apps/environments/*"
+      ],
+      "@web/domain-api": [
+        "libs/domain-api/src/index.ts"
+      ],
+      "@web/domain-articles": [
+        "libs/domain-articles/src/index.ts"
+      ],
+      "@web/domain-home": [
+        "libs/domain-home/src/index.ts"
+      ],
+      "@web/openapi": [
+        "libs/openapi/src/index.ts"
+      ],
+      "@web/theme": [
+        "libs/theme/src/index.ts"
+      ],
+      "@web/ui-hero": [
+        "libs/ui-hero/src/index.ts"
+      ]
     },
-    "compileOnSave": false,
-    "compilerOptions": {
-        "baseUrl": ".",
-        "declaration": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "forceConsistentCasingInFileNames": true,
-        "importHelpers": true,
-        "lib": ["es2017", "dom"],
-        "module": "esnext",
-        "moduleResolution": "node",
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitOverride": true,
-        "noImplicitReturns": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "exactOptionalPropertyTypes": true,
-        "paths": {
-            "@web/theme": ["libs/theme/src/index.ts"]
-        },
-        "rootDir": ".",
-        "skipDefaultLibCheck": true,
-        "skipLibCheck": true,
-        "sourceMap": true,
-        "strict": true,
-        "target": "es2015",
-        "typeRoots": ["node_modules/@types"]
-    },
-    "exclude": ["node_modules", "tmp"]
+    "rootDir": ".",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -1,0 +1,7 @@
+<ng-container *ngIf="articles$ | async as articles">
+    <div class="flex flex-wrap justify-content-center gap-5 mb-xxl">
+        <ng-container *ngFor="let article of articles.data; trackBy: trackByFn">
+            <web-article-card [article]="article"></web-article-card>
+        </ng-container>
+    </div>
+</ng-container>

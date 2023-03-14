@@ -1,0 +1,10 @@
+@import '@team23/design-system/utilities';
+
+.app-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    @include set-spacing(pb-xxl);
+
+    background: var(--color-white);
+}

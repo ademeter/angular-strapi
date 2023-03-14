@@ -1,0 +1,10 @@
+<ng-container *ngIf="article">
+    <div class="article-card">
+        <div class="article-card__image" [style.background-image]="imageUrl ? 'url(' + imageUrl + ')' : ''" alt=""></div>
+
+        <div class="article-card__content">
+            <h5 class="headline">{{article.attributes?.title}}</h5>
+            <div class="description">{{article.attributes?.description}}</div>
+        </div>
+    </div>
+</ng-container>

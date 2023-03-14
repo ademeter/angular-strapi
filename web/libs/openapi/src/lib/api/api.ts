@@ -1,0 +1,11 @@
+export * from './article.service';
+import { ArticleService } from './article.service';
+export * from './home.service';
+import { HomeService } from './home.service';
+export * from './uploadFile.service';
+import { UploadFileService } from './uploadFile.service';
+export * from './usersPermissionsAuth.service';
+import { UsersPermissionsAuthService } from './usersPermissionsAuth.service';
+export * from './usersPermissionsUsersRoles.service';
+import { UsersPermissionsUsersRolesService } from './usersPermissionsUsersRoles.service';
+export const APIS = [ArticleService, HomeService, UploadFileService, UsersPermissionsAuthService, UsersPermissionsUsersRolesService];

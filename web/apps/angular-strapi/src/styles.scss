@@ -1,4 +1,19 @@
-/* Import global theme, classes and placeholder */
-@import 'theme';
 /* Import all variables and utilities */
-@import 'theme/utilities';
+
+$base-size: 0.35rem;
+
+@import '@team23/design-system/theme';
+@import '@team23/design-system/utilities';
+
+strong {
+    font-weight: bold;
+}
+
+.bodytext p {
+    line-height: 1.5em;
+    @include set-spacing(mb-m);
+}
+
+body {
+    background-color: lightgray;
+}
