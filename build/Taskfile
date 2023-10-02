@@ -11,9 +11,18 @@ task:install(){
     pre-commit:install
 
     backend:install
+    build:install
 }
 
 backend:install(){
+    (
+        cd ../backend && \
+        npm install
+    )
+}
+
+# installs open-api-generator in build folder
+build:install(){
     (
         cd ../backend && \
         npm install
